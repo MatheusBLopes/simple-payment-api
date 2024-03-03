@@ -30,6 +30,5 @@ urlpatterns = [
         schema_view.with_ui("swagger", cache_timeout=0),
         name="schema-swagger-ui",
     ),
-    path("", include("apps.core.urls", namespace="core")),
     path("", include("apps.payment.urls", namespace="payment")),
 ]

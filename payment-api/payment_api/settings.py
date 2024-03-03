@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     # 3rd party libs
     "rest_framework",
     "drf_yasg",
-    "apps.core",
     "apps.payment",
 ]
 
@@ -144,6 +143,3 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
-# myproject/settings.py
-AUTH_USER_MODEL = "core.CustomUser"
