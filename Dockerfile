@@ -15,8 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-COPY pyproject.toml poetry.lock /app/
-COPY entrypoint.sh /usr/bin/
+COPY pyproject.toml poetry.lock gunicorn_config.py /app/
 
 RUN poetry config virtualenvs.create false && poetry install
 
@@ -24,8 +23,6 @@ ADD . /app/
 
 EXPOSE 8000
 
-RUN ["chmod", "a+x", "/usr/bin/entrypoint.sh"]
-
 USER root
 
-ENTRYPOINT ["/usr/bin/entrypoint.sh"]
+CMD ["gunicorn", "-c", "gunicorn_config.py", "payment_api.wsgi:application"]
